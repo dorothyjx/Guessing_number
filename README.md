@@ -1,1 +1,4 @@
-# Guessing_number
+# Guess Number
+
+## INFO 6150
+### Author: Dorothy
