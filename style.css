@@ -139,8 +139,10 @@ button {
 }
 
 #hintNumbers {
+	width:450px;
 	display: flex;
-	flex-direction: row;
+	justify-content: space-around;
+	align-items: flex-end;	
 	padding: 0 15px;
 	font-size: 1.5rem;
 	color: white;

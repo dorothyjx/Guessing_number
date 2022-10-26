@@ -85,11 +85,11 @@ function generateRandomNumber() {
 }
 
 function getHint() {
-	row.value = ""
 	for(i = 0; i < 6; i++) {
-		let hintNum = document.createElement("p")
+		let hintNum = document.createElement("div")
 		let n = Math.floor(Math.random() * 101) + 1
 		hintNum.textContent = `${n} \0`
 		row.append(hintNum)
 	}
+	console.log(row)
 }
