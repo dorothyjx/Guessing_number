@@ -68,6 +68,9 @@ h2 {
 }
 
 @media screen and (max-width: 800px) {
+	.container {
+		height: auto;
+	}
 	.display {
 		/* transform: scale(0.8); */
 		width: 50vw;
@@ -75,7 +78,6 @@ h2 {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-rows: 1fr 1fr 1fr 1fr;
 		row-gap: 1em;
-
 	}
 	#guess5 {
 		justify-self: center;
