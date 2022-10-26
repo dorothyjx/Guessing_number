@@ -11,7 +11,7 @@ console.log("Answer: " + answer)
 let count = 0
 
 reset.addEventListener("click", resetPage)
-hint.addEventListener("click", getHint)
+hint.addEventListener("click", getHint, {once : true})
 
 form.addEventListener("submit", (event) => {
 	event.preventDefault()
@@ -33,7 +33,7 @@ form.addEventListener("submit", (event) => {
 	} else if(count == 5) {
 		lastGuess(inputNum, current_guess)
 	} else {
-		alert("You are out of rounds! Please retry")
+		alert("You are out of rounds! Please click Reset and retry")
 	}
 	input.value = ""
 	msg.value = ""
@@ -41,9 +41,8 @@ form.addEventListener("submit", (event) => {
 
 function guess(inputNumber, guessIndex, arrowIndex) {
 	guessIndex.textContent = inputNumber
-
 	if(inputNumber == answer) {
-		msg.textContent = "You Win"
+		msg.textContent = "You Win!"
 		guessIndex.style.backgroundColor = "lightgreen"
 		resetPage
 	}
@@ -60,11 +59,11 @@ function lastGuess(inputNumber, guessIndex) {
 	guessIndex.textContent = inputNumber
 	if(inputNumber == answer) {
 		console.log("Correct")
-		msg.textContent = "You Win"
+		msg.textContent = "You Win!"
 		guessIndex.style.backgroundColor = "lightgreen"
 	} else {
 		console.log("Wrong Number!")
-		msg.textContent = "You Lose"
+		msg.textContent = "You Lose!"
 		guessIndex.style.backgroundColor = "red"
 	}
 }
@@ -78,10 +77,11 @@ function generateRandomNumber() {
 }
 
 function getHint() {
+	row.value = ""
 	for(i = 0; i < 6; i++) {
-		let hintNum = document.createElement("div")
+		let hintNum = document.createElement("p")
 		let n = Math.floor(Math.random() * 101) + 1
-		hintNum.textContent = n
+		hintNum.textContent = `${n} \0`
 		row.append(hintNum)
 	}
 }
