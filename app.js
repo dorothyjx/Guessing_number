@@ -9,6 +9,7 @@ const msg = document.querySelector("#message")
 let answer = generateRandomNumber()
 console.log("Answer: " + answer)
 let count = 0
+let win = false
 
 reset.addEventListener("click", resetPage)
 hint.addEventListener("click", getHint, {once : true})
@@ -19,6 +20,7 @@ form.addEventListener("submit", (event) => {
 	let inputNum = Number(input.value)
 	if(inputNum < 1 || inputNum > 100 || isNaN(inputNum)) {
 		alert(`${inputNum} is invalid input`)
+		//msg.textContent = "invalid"
 		input.value = ""
 		return
 	}
@@ -28,12 +30,16 @@ form.addEventListener("submit", (event) => {
 	let current_guess = document.querySelector(guess_i)
 	let current_arrow = document.querySelector(arrow_i)
 
-	if(count < 5) {
-		guess(inputNum, current_guess, current_arrow)
-	} else if(count == 5) {
-		lastGuess(inputNum, current_guess)
+	if (win == true) {
+		alert("You already guessed the correct number! Please click Reset to restart the game")
 	} else {
-		alert("You are out of rounds! Please click Reset and retry")
+		if(count < 5) {
+			guess(inputNum, current_guess, current_arrow)
+		} else if(count == 5) {
+			lastGuess(inputNum, current_guess)
+		} else {
+			alert("You are out of rounds! Please click Reset and retry")
+		}
 	}
 	input.value = ""
 	msg.value = ""
@@ -44,7 +50,9 @@ function guess(inputNumber, guessIndex, arrowIndex) {
 	if(inputNumber == answer) {
 		msg.textContent = "You Win!"
 		guessIndex.style.backgroundColor = "lightgreen"
-		resetPage
+		//resetPage
+		win = true
+
 	}
 	else if(inputNumber < answer) {
 		console.log("low")
