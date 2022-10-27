@@ -20,11 +20,10 @@ form.addEventListener("submit", (event) => {
 	let inputNum = Number(input.value)
 	if(inputNum < 1 || inputNum > 100 || isNaN(inputNum)) {
 		alert(`${inputNum} is invalid input`)
-		//msg.textContent = "invalid"
 		input.value = ""
 		return
 	}
-	count += 1
+	count++
 	let guess_i = "#guess" + count
 	let arrow_i = "#arrow" + count
 	let current_guess = document.querySelector(guess_i)
@@ -50,9 +49,7 @@ function guess(inputNumber, guessIndex, arrowIndex) {
 	if(inputNumber == answer) {
 		msg.textContent = "You Win!"
 		guessIndex.style.backgroundColor = "lightgreen"
-		//resetPage
 		win = true
-
 	}
 	else if(inputNumber < answer) {
 		console.log("low")
@@ -81,14 +78,19 @@ function resetPage() {
 }
 
 function generateRandomNumber() {
-	return Math.floor(Math.random() * 101) + 1
+	return Math.floor(Math.random() * 100) + 1
 }
 
 function getHint() {
+	let randomIndex = Math.floor(Math.random() * 6)
 	for(i = 0; i < 6; i++) {
 		let hintNum = document.createElement("div")
-		let n = Math.floor(Math.random() * 101) + 1
-		hintNum.textContent = `${n} \0`
+		if(i == randomIndex) {
+			hintNum.textContent = `${answer}`
+		} else {
+			let n = Math.floor(Math.random() * 100) + 1
+			hintNum.textContent = `${n}`
+		}
 		row.append(hintNum)
 	}
 	console.log(row)
