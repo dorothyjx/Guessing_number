@@ -51,11 +51,11 @@ function guess(inputNumber, guessIndex, arrowIndex) {
 		guessIndex.style.backgroundColor = "lightgreen"
 		win = true
 	}
-	else if(inputNumber < answer) {
-		console.log("low")
+	else if(inputNumber > answer) {
+		console.log("input higher than answer")
 		arrowIndex.textContent = "↓"
 	} else {
-		console.log("high")
+		console.log("input lower than anwser")
 		arrowIndex.textContent = "↑"
 	}
 }
